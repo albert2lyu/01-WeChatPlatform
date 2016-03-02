@@ -11,8 +11,8 @@
 
 ## 项目前端目录结构
 
-src 是源文件目录，里面有 css、img、js、scss 四个文件夹，其中 scss 是开发阶段编译前的样式文件，css 是开发阶段编译后的样式文件。
+`src` 是源文件目录，里面有 `css`、`img`、`js`、`scss` 四个文件夹，其中 `scss` 用于存放开发阶段编译前的样式文件，`css` 用于存放开发阶段编译后的样式文件。
 
-dist 是构建目录，用于项目完成后的打包和交付。有 css、js、img-compressed 三个文件夹，其中 img-compressed 是图片压缩后的存放目录。
+`dist` 是构建目录，用于项目完成后的打包和交付。有 `css`、`js`、`img-compressed` 三个文件夹，其中 `img-compressed` 是图片压缩后的存放目录。
 
 ## 后端使用说明（启华撰写）
