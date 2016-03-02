@@ -7,7 +7,7 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
+var image = require('gulp-image');
 var pngquant = require('imagemin-pngquant');
 var browserSync = require('browser-sync').create();
 
@@ -75,16 +75,18 @@ gulp.task('build:js', function() {
 });
 
 // 打包阶段：压缩图片
-gulp.task('build:img', function {
-    return gulp.src('./src/img/raw/*')
-        .pipe(imagemin({
-            progressive: true,
-            interlaced: true,
-            svgoPlugins: [
-                {removeViewBox: false},
-                {cleanupIDs: false}
-            ],
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest('./dist/img-compressed'));
+gulp.task('build:img', function () {
+  gulp.src('./src/img/raw/*')
+    .pipe(image({
+      pngquant: true,
+      optipng: false,
+      zopflipng: true,
+      advpng: true,
+      jpegRecompress: false,
+      jpegoptim: true,
+      mozjpeg: true,
+      gifsicle: true,
+      svgo: true
+    }))
+    .pipe(gulp.dest('./dist/img-compressed'));
 });
