@@ -17,6 +17,6 @@
 
 ## 后端使用说明（启华撰写）
 
-1. 下载安装composer包管理软件（https://getcomposer.org/）注意：若安装过程出现未安装openssl扩展错误，直接在phpstudy开启
+1. 下载安装composer包管理软件https://getcomposer.org/      注意：若安装过程出现未安装openssl扩展错误，直接在phpstudy开启
 2. 在当前文件夹运行命令行工具，执行命令`composer install`
 
