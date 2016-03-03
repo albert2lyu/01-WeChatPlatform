@@ -29,8 +29,9 @@ gulp.task('serve', ['dev:sass'], function() {
     browserSync.init({
         server: "./"
     });
-    gulp.watch("./src/scss/**/*.scss", ['dev:sass']);
-    gulp.watch("./src/**/*.html").on('change', browserSync.reload);
+    gulp.watch("./web/src/scss/**/*.scss", ['dev:sass']);
+    gulp.watch("./web/src/**/*.twig").on('change', browserSync.reload);
+    gulp.watch("./index.php").on('change', browserSync.reload);
 });
 
 // 编译 Sass 并把 CSS 注入浏览器
