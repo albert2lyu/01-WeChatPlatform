@@ -1,14 +1,11 @@
 'use strict';
 
 var gulp = require('gulp');
-var gulp-rev = require('gulp-rev');
-var gulp-useref = require('gulp-useref');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
 var image = require('gulp-image');
-var pngquant = require('imagemin-pngquant');
 var browserSync = require('browser-sync').create();
 
 // 开发阶段
