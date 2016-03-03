@@ -1,13 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-cmn-hans">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-        <title>搜索</title>
+
+        <title>{% block title %}来自香蕉实验室{% endblock %}</title>
+
+        {% block Stylesheet %}
+        <!-- WeUI CSS -->
         <link rel="stylesheet" href="../node_modules/weui-sass/dist/style/weui.min.css">
+        <!-- 自定义 CSS -->
         <link rel="stylesheet" href="./css/index.css">
+        {% endblock %}
     </head>
     <body>
-
+        {% block body %}{% endblock %}
     </body>
 </html>
