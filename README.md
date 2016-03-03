@@ -16,3 +16,7 @@
 `dist` 是构建目录，用于项目完成后的打包和交付。有 `css`、`js`、`img-compressed` 三个文件夹，其中 `img-compressed` 是图片压缩后的存放目录。
 
 ## 后端使用说明（启华撰写）
+
+1. 下载安装composer包管理软件（https://getcomposer.org/）注意：若安装过程出现未安装openssl扩展错误，直接在phpstudy开启
+2. 在当前文件夹运行命令行工具，执行命令`composer install`
+
