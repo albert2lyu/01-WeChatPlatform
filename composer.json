@@ -1,6 +1,5 @@
 {
     "require": {
-        "slim/slim": "3.*",
         "slim/slim": "2.*",
     		"twig/twig": "1.*",
         "illuminate/database": "4.*"
