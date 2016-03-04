@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e2b30104e5531bb7f9fc0887c3c408e3",
+    "hash": "0156bf4c72b80fb3849dd244d393bdc0",
+    "content-hash": "739b141ec5b7d133ca294147ed2e2f71",
     "packages": [
         {
             "name": "illuminate/container",
@@ -17,7 +18,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/illuminate/container/bf0be54be5f10cfa66deba5666db68922452d587.zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/bf0be54be5f10cfa66deba5666db68922452d587",
                 "reference": "bf0be54be5f10cfa66deba5666db68922452d587",
                 "shasum": ""
             },
@@ -58,7 +59,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/illuminate/database/ced28a1f1074b0767a3f0bfbcd7b95be0728be1f.zip",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/ced28a1f1074b0767a3f0bfbcd7b95be0728be1f",
                 "reference": "ced28a1f1074b0767a3f0bfbcd7b95be0728be1f",
                 "shasum": ""
             },
@@ -115,7 +116,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/illuminate/events/a8471d3f6c3e87c50e25e18f13908fffaef159df.zip",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/a8471d3f6c3e87c50e25e18f13908fffaef159df",
                 "reference": "a8471d3f6c3e87c50e25e18f13908fffaef159df",
                 "shasum": ""
             },
@@ -158,7 +159,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/illuminate/support/db61f3f6d507ce417ca993e1f93585db7efd8b12.zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/db61f3f6d507ce417ca993e1f93585db7efd8b12",
                 "reference": "db61f3f6d507ce417ca993e1f93585db7efd8b12",
                 "shasum": ""
             },
@@ -205,7 +206,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/briannesbitt/Carbon/7b08ec6f75791e130012f206e3f7b0e76e18e3d7.zip",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7b08ec6f75791e130012f206e3f7b0e76e18e3d7",
                 "reference": "7b08ec6f75791e130012f206e3f7b0e76e18e3d7",
                 "shasum": ""
             },
@@ -252,7 +253,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/slimphp/Slim/20a02782f76830b67ae56a5c08eb1f563c351a37.zip",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/20a02782f76830b67ae56a5c08eb1f563c351a37",
                 "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37",
                 "shasum": ""
             },
@@ -298,7 +299,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/symfony/polyfill-mbstring/1289d16209491b584839022f29257ad859b8532d.zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
                 "reference": "1289d16209491b584839022f29257ad859b8532d",
                 "shasum": ""
             },
@@ -349,30 +350,30 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v2.8.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "b7b4ebadd2b5e614ff7d2d6fc63e0ed0578909c7"
+                "reference": "2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/symfony/translation/b7b4ebadd2b5e614ff7d2d6fc63e0ed0578909c7.zip",
-                "reference": "b7b4ebadd2b5e614ff7d2d6fc63e0ed0578909c7",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91",
+                "reference": "2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9",
+                "php": ">=5.5.9",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
-                "symfony/config": "<2.7"
+                "symfony/config": "<2.8"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.8",
-                "symfony/intl": "~2.4|~3.0.0",
-                "symfony/yaml": "~2.2|~3.0.0"
+                "symfony/config": "~2.8|~3.0",
+                "symfony/intl": "~2.8|~3.0",
+                "symfony/yaml": "~2.8|~3.0"
             },
             "suggest": {
                 "psr/log": "To use logging capability in translator",
@@ -382,7 +383,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -409,7 +410,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 09:49:18"
+            "time": "2016-02-02 13:44:19"
         },
         {
             "name": "twig/twig",
@@ -421,7 +422,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/twigphp/Twig/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8.zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
                 "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
                 "shasum": ""
             },
