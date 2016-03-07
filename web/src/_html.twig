@@ -1,18 +1,21 @@
 <!doctype html>
 <html lang="zh-cmn-hans">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-        <title>{% block title %}来自香蕉实验室{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>{% block title %}来自香蕉实验室{% endblock %}</title>
 
-        {% block Stylesheet %}
-        <!-- WeUI CSS -->
-        <link rel="stylesheet" href="../node_modules/weui-sass/dist/style/weui.min.css">
-        <!-- 自定义 CSS -->
-        <link rel="stylesheet" href="./css/index.css">
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block Stylesheet %}
+    <!-- WeUI CSS -->
+    <link rel="stylesheet" href="./web/src/css/weui.min.css">
+    <!-- 自定义 CSS -->
+    <link rel="stylesheet" href="./web/src/css/index.css">
+    {% endblock %}
+  </head>
+  <body ontouchstart="">
+    {% block body %}{% endblock %}
+
+    <script type="text/javascript" src="./web/src/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./web/src/js/jquery-weui.js"></script>
+  </body>
 </html>
