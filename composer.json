@@ -1,13 +1,13 @@
 {
     "require": {
-        "slim/slim": "3.*",
-		"twig/twig": "1.*",
+        "slim/slim": "2.*",
+    		"twig/twig": "1.*",
         "illuminate/database": "4.*"
     },
     "autoload": {
         "psr-0": { "": "src/"},
 		"files": [
-            "src/PHP/methods.php"
+        "src/PHP/methods.php"
         ]
     }
 }

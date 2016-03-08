@@ -13,13 +13,14 @@
 
 1. 安装 [Node 4.3.* ](https://nodejs.org/en/)
 2. 安装 `cnpm`： `npm install -g cnpm --registry=https://registry.npm.taobao.org`
-3. 在项目web目录运行：`cnpm install`，等待结束
+3. 在项目 `web` 目录运行：`cnpm install`，等待结束
 3. 开发阶段运行项目：
- - 在项目根目录运行：`gulp dev`
-4. 项目完成打包：`gulp build`(一般不用管)
+ - 在项目 `web` 目录运行：`gulp dev`，监听文件变化，自动刷新浏览器
+4. 项目完成后打包：
+ - 在项目 `web` 目录运行：`gulp build`(一般不用管)
 
 ## 后端使用说明
 
-1. 下载安装 [composer](https://getcomposer.org) 包管理软件（注意：若安装过程出现未安装 OpenSSL 扩展错误，直接在 phpstudy 中开启）
+1. 下载安装 [composer](https://getcomposer.org) 包管理软件（注意：若安装过程出现未安装 OpenSSL 扩展错误，请在 phpstudy 中安装 OpenSSL 插件）
 2. 打开翻墙软件全局翻墙
 3. 在当前文件夹运行命令行工具，执行命令`composer install`

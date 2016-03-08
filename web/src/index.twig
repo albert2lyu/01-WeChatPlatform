@@ -1,5 +1,72 @@
-{% extends '_html.twig' %}
+{% extends "_html.twig" %}
+
+{% block title %}搜索{% endblock %}
 
 {% block body %}
+<div class="search-container">
+  {# 搜索框 #}
+  <div class="weui_search_bar" id="search_bar">
+    <form class="weui_search_outer">
+      <div class="weui_search_inner">
+        <i class="weui_icon_search"></i>
+        <input type="search" class="weui_search_input" id="search_input" placeholder="搜索" required/>
+        <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+      </div>
+      <label for="search_input" class="weui_search_text" id="search_text">
+        <i class="weui_icon_search"></i>
+        <span>搜索</span>
+      </label>
+    </form>
+    <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+  </div>
 
+  {# 图文列表 #}
+  <div class="search-result weui_panel weui_panel_access">
+    <div class="weui_panel_hd">搜索结果</div>
+    <div class="weui_panel_bd">
+
+      {# 区块一 #}
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题一</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+
+      {# 区块二 #}
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题二</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+
+      {# 区块三 #}
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题二</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+
+      {# 区块四 #}
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题二</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题二</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+
+      <div class="weui_media_box weui_media_text">
+        <h4 class="weui_media_title">标题二</h4>
+        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+    </div>
+    <a href="javascript:void(0);" class="weui_panel_ft">查看更多</a>
+  </div>
+
+  <div class="search-footer-space"></div>
+
+  {# 新建文章 #}
+  <div class="btn-container">
+  	<a href="javascript:;" class="weui_btn weui_btn_primary">新建文章</a>
+  </div>
+</div>
 {% endblock %}

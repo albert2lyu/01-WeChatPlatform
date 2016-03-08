@@ -1,0 +1,80 @@
+{% extends "_html.twig" %}
+
+{% block title %}文章数据{% endblock %}
+
+{% block body %}
+	<div class="data-page">
+		<article class="weui_article">
+			<h1 class="page_title">《中国改革开放 30 周年成果展示》</h1>
+			<section class="article-info">
+				<span class="article-date">2016-02-08</span>
+				<span class="article-writor">李四</span>
+				<span class="article-source">财新网</span>
+			</section>
+			<section class="article-data">
+				<div id="data" style="width: 100%; height: 150%;"></div>
+			</section>
+		</article>
+
+		{# 返回文章 #}
+		<div class="btn-container">
+			<a href="javascript:;" class="weui_btn weui_btn_default">返回文章</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block defaultScript %}
+  <script type="text/javascript" src="./web/src/js/zepto.js"></script>
+{% endblock %}
+{% block Script %}
+	<script type="text/javascript" src="./web/src/js/echarts.min.js"></script>
+	<script type="text/javascript" src="./web/src/js/macarons.js"></script>
+
+	<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('data'), 'macarons');
+
+    // 指定图表的配置项和数据
+    var option = {
+      tooltip: {
+	      trigger: 'axis'
+      },
+      grid: {
+      	left: '0',
+      	top: '10%',
+        containLabel: true
+      },
+      xAxis: [
+        {
+          type: 'value',
+            boundaryGap : [0, 0.001]
+        }
+      ],
+      yAxis: [
+        {
+            type: 'category',
+            data: ['阅读数','点赞数']
+        }
+      ],
+      series: [
+        {
+            name: '次数',
+            type: 'bar',
+            itemStyle: {
+            	normal: {
+            		color: '#3cc51f'
+            	},
+            	emphasis: {
+            		color: '#2B8C17'
+            	}
+            },
+            data: [2500, 44]
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+
+{% endblock %}
