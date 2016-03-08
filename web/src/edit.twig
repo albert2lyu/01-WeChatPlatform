@@ -1,0 +1,76 @@
+{% extends "_html.twig" %}
+
+{% block title %}录入文章{% endblock %}
+
+{% block Stylesheet %}
+	<link rel="stylesheet" href="./web/src/css/wangEditor-mobile.min.css">
+{% endblock %}
+
+{% block body %}
+	<div class="edit-container">
+		<div class="page-container btn-group">
+			<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_plain_default">保存草稿</a>
+			<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_plain_primary">发布</a>
+		</div>
+    <textarea id="edit-article">
+    	<h1 class="article-title">请输入标题</h1>
+      <p class="article-content">请输入正文</p>
+    </textarea>
+
+    <div class="footer-space"></div>
+
+    <div class="edit-info weui_cells weui_cells_form">
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">作者</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="text" placeholder="请输入文章作者">
+        </div>
+      </div>
+
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">发布日期</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="date" value="">
+        </div>
+      </div>
+
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">原文出处</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="text" placeholder="请输入文章来源">
+        </div>
+      </div>
+
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">默认点赞数</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="number" placeholder="请输入点赞数">
+        </div>
+      </div>
+
+	    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">默认阅读数</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="number" placeholder="请输入文章阅读次数">
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block defaultScript %}{% endblock %}
+{% block Script %}
+	<script type="text/javascript" src="./web/src/js/zepto.js"></script>
+	<script type="text/javascript" src="./web/src/js/zepto.touch.js"></script>
+	<script type="text/javascript" src="./web/src/js/wangEditor-mobile.min.js"></script>
+  <script type="text/javascript" src="./web/src/js/index.js"></script>
+
+	<script type="text/javascript">
+    $(function () {
+        // ___E 三个下划线
+        var editor = new ___E('edit-article');
+        editor.init();
+    });
+	</script>
+{% endblock %}
