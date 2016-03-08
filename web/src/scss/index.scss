@@ -1,4 +1,134 @@
+@import "jquery-weui";
+@import "variables";
+
+.weui_label {
+	width: 6em;
+}
+
 html,
 body {
-  background-color: yellow;
+  background-color: $background-color;
+  height: 100%;
+}
+
+
+
+// 文章搜索页
+#search_bar {
+	position: fixed;
+	top: 0;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.search-result {
+	margin-top: 60px;
+	margin-bottom: 80px;
+}
+
+.btn-container {
+	position: fixed;
+	bottom: 0;
+	box-sizing: border-box;
+	width: 100%;
+	padding: $gap15;
+	background-color: $background-color;
+}
+
+
+
+// 文章录入页
+.edit-container {
+	position: relative;
+	min-height: 100%;
+}
+
+.page-container {
+	padding-left: $gap15;
+	padding-right: $gap15;
+}
+
+.edit-footer-space {
+	height: 304px;
+}
+
+#edit-article {
+	overflow-x: scroll;
+}
+
+.wangEditor-mobile-txt {
+	padding-left: 15px;
+	padding-right: 15px;
+
+	* {
+		color: $text-color;
+	}
+
+	p:first-of-type {
+		padding-top: 10px;
+	}
+}
+
+.article-title {
+	border-bottom: 1px solid $text-color;
+	color: $gray;
+}
+
+// 文章信息部分始终在最底部
+.edit-info {
+	position: absolute;
+	bottom: 0;
+	box-sizing: border-box;
+	width: 100%;
+	color: $gray;
+}
+
+.btn-group {
+	padding-bottom: 10px;
+	background-color: #fff;
+	text-align: center;
+}
+
+
+
+// 文章展示页
+.article-page {
+	background-color: #fff;
+
+	.page_title {
+		font-size: 20px;
+	}
+}
+
+.article-info,
+.article-count {
+	color: $gray;
+
+	span {
+		padding-right: 8px;
+	}
+
+	.article-detail {
+		float: right;
+		color: $globalLinkColor;
+	}
+}
+
+
+// 数据展示页
+.data-page {
+	min-height: 100%;
+	background-color: #fff;
+
+	.weui_article {
+		h1 {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.article-data {
+	box-sizing: border-box !important;
+	width: 100%;
+	height: 100%;
 }
