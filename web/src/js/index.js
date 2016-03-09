@@ -71,6 +71,7 @@ $(function () {
         console.log(data);
       },
       error: function(xhr, type){
+        console.log(xhr)
         alert('Ajax error!')
       }
     })    
