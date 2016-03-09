@@ -42,4 +42,37 @@ $(function () {
     saveArticle();
   })
 
+  // 获取表单数据
+  $('#publish').on('click', function () {
+    var title = $('');
+    var content = $txt.html();
+    var author = $('#author').val();
+    var source = $('#source').val();
+    var share = $('#platform').val();
+    var like_num = $('#like-num').val();
+    var read_num = $('#read-num').val();
+
+    $.ajax({
+      type: 'POST',
+      url: 'create',
+      data: {
+         // title: title,
+         content: content,
+         author: author,
+         read_num: read_num,
+         like_num: like_num,
+         source: source,
+         share: share
+       },
+      dataType: 'json',
+      timeout: 5000,
+      context: $('body'),
+      success: function(data){
+        console.log(data);
+      },
+      error: function(xhr, type){
+        alert('Ajax error!')
+      }
+    })    
+  })
 });
