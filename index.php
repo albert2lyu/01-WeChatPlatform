@@ -114,6 +114,7 @@ $app->get('/article/:id', function($id) use($app)
     $article->read_num++;
     $article->save();
     $article=Article::find($id)->toArray();
+    // print_r($article);
     $app->render('article.twig',array('article'=>$article));
 });
 
@@ -123,7 +124,7 @@ $app->get('/article/:id', function($id) use($app)
  * @return View 渲染article_statistics.twig视图
  */
 $app->get('/article/statistics/:id', function($id) use($app)
-{
+{   
     $article=Article::find($id);
     $app->render('article_statistics.twig',array('article'=>$article));
 });
@@ -134,7 +135,7 @@ $app->get('/article/statistics/:id', function($id) use($app)
  * @param $id Int 文章id
  * @return Json $response
  */
-$app->post('/like', function() use($app, $json)
+$app->post('/like', function() use($app)
 {
     $req = $app->request();
     $id=$req->post('id');
