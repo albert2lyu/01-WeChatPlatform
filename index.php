@@ -81,7 +81,7 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    $article = Article::firstOrCreate([
+    /*$article = Article::firstOrCreate([
         'title' => $req['title'], 
         'content' => $req['content'],
         'author' => $req['author'],
@@ -99,8 +99,8 @@ $app->post('/create', function() use($app, $json)
         $json_data = array(
             'status'=>'insert failed'
             );
-    }
-    $json->echoRespnse(200, $json_data);
+    }*/
+    $json->echoRespnse(200, $req);
 });
 
 /**
