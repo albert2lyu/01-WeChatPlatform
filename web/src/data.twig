@@ -24,11 +24,11 @@
 {% endblock %}
 
 {% block defaultScript %}
-  <script type="text/javascript" src="./web/src/js/zepto.js"></script>
+  <script type="text/javascript" src="{{ path }}/web/src/js/zepto.js"></script>
 {% endblock %}
 {% block Script %}
-	<script type="text/javascript" src="./web/src/js/echarts.min.js"></script>
-	<script type="text/javascript" src="./web/src/js/macarons.js"></script>
+	<script type="text/javascript" src="{{ path }}/web/src/js/echarts.min.js"></script>
+	<script type="text/javascript" src="{{ path }}/web/src/js/macarons.js"></script>
 
 	<script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
