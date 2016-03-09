@@ -81,7 +81,7 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    //print_r($req);
+    //todo 此处还需增加分离标题和正文（提取标题并替换成空白字符串）
     $article = Article::firstOrCreate([
         //'title' => $req['title'], 
         'content' => $req['content'],
@@ -146,11 +146,9 @@ $app->post('/like', function() use($app)
     $article->save();
 });
 
-$app->get('/test', function() use($app)
+$app->get('/test', function() use($app, $json )
 {
-    $article = Article::firstOrCreate([
-        //'title' => $req['title'], 
-        'content' => '123',
+    $article = Article::firstOrCreate(['content' => '123',
         'author' => '123',
         //保留字段'pic' => $req['pic'],
         'read_num' => '123',
@@ -158,6 +156,7 @@ $app->get('/test', function() use($app)
         'source' => '123',
         'share' => '123'
         ]);
+    //$article = Article::find(6);
     if(!empty($article)){
         $json_data = array(
             'status'=>'success'
