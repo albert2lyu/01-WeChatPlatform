@@ -729,9 +729,6 @@ body {
 .edit-footer-space {
   height: 304px; }
 
-#edit-article {
-  overflow-x: scroll; }
-
 .wangEditor-mobile-txt {
   padding-left: 15px;
   padding-right: 15px; }

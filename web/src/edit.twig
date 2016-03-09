@@ -10,8 +10,8 @@
 	<div class="edit-container">
 		
     <textarea id="edit-article">
-    	<h1 class="article-title">请输入标题</h1>
-      <p class="article-content">请输入正文</p>
+    	<h1 class="article-title">标题</h1>
+      <p class="article-content">正文...</p>
     </textarea>
 
     <div class="edit-footer-space"></div>
@@ -55,7 +55,7 @@
 
       </div>
       <div class="page-container btn-group">
-        <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_plain_default">保存草稿</a>
+        <a id="save" href="javascript:;" class="weui_btn weui_btn_mini weui_btn_plain_default">保存草稿</a>
         <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_plain_primary">发布文章</a>
       </div>
     </div>
@@ -69,12 +69,4 @@
 	<script type="text/javascript" src="./web/src/js/zepto.touch.js"></script>
 	<script type="text/javascript" src="./web/src/js/wangEditor-mobile.min.js"></script>
   <script type="text/javascript" src="./web/src/js/index.js"></script>
-
-	<script type="text/javascript">
-    $(function () {
-        // ___E 三个下划线
-        var editor = new ___E('edit-article');
-        editor.init();
-    });
-	</script>
 {% endblock %}
