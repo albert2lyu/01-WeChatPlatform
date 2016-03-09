@@ -62,7 +62,7 @@ $app->get('/search/:content/:page', function($content, $page) use($app, $json)
 $app->get('/create', function() use($app)
 {
     //todo
-    $app->render('article_create.twig');
+    $app->render('edit.twig');
 });
 
 /**
@@ -126,7 +126,7 @@ $app->get('/article/:id', function($id) use($app)
 $app->get('/article/statistics/:id', function($id) use($app)
 {   
     $article=Article::find($id);
-    $app->render('article_statistics.twig',array('article'=>$article));
+    $app->render('data.twig',array('article'=>$article));
 });
 
 
