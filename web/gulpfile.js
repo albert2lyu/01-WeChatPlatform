@@ -29,6 +29,7 @@ gulp.task('serve', ['dev:sass'], function() {
     });
     gulp.watch("../web/src/scss/**/*.scss", ['dev:sass']);
     gulp.watch("../web/src/**/*.twig").on('change', browserSync.reload);
+    gulp.watch("../web/src/**/*.js").on('change', browserSync.reload);
     gulp.watch("../index.php").on('change', browserSync.reload);
 });
 
