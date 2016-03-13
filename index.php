@@ -84,10 +84,14 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    //print_r($req);
+    $rule='/<h1 class="article-title focus-elem">(.*?)<\/h1>/is';//<h1 class="article-title focus-elem">标题gtgfsda</h1>
+    preg_match_all($rule, $req['content'] , $title);
+    //print_r($title);//[@str_replace("要替换的旧内容", "要取代原内容的新字符", $被替换内容的变量名)]
+    $str_replace = '<h1 class="article-title focus-elem">'.$title[1][0].'<\/h1>';
+    $content = str_replace($str_replace, '', $article['content']);
     $article = Article::firstOrCreate([
-        //'title' => $req['title'], 
-        'content' => $req['content'],
+        'title' => $title[1][0], 
+        'content' => $content,
         'author' => $req['author'],
         //保留字段'pic' => $req['pic'],
         'read_num' => $req['read_num'],
@@ -119,7 +123,6 @@ $app->get('/article/:id', function($id) use($app)
     $article->read_num++;
     $article->save();
     $article=Article::find($id)->toArray();
-    // print_r($article);
     $app->render('article.twig',array('path'=>URI_PATH,'article'=>$article));
 });
 
@@ -130,7 +133,7 @@ $app->get('/article/:id', function($id) use($app)
  */
 $app->get('/article/statistics/:id', function($id) use($app)
 {   
-    $article=Article::find($id);
+    $article=Article::find($id)->toArray();
     $app->render('data.twig',array('path'=>URI_PATH,'article'=>$article));
 });
 

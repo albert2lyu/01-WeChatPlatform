@@ -1,17 +1,17 @@
 {% extends "_html.twig" %}
 
-{% block title %}文章数据{% endblock %}
+{% block title %}{{article.title}}{% endblock %}
 
 {% block body %}
 	<div class="data-page">
 		<article class="weui_article">
-			<h1 class="page_title">谷歌人工智能专家：不排除出现天网的可能性</h1>
+			<h1 class="page_title">{{article.title}}</h1>
 			<section class="article-info">
-				<span class="article-date">2016-02-08</span>
-				<span class="article-writor">作者：李四</span>
+				<span class="article-date">{{article.creaated_time}}</span>
+				<span class="article-writor">作者：{{article.author}}</span>
 				<br>
-        <span class="article-source">原文出处：新浪科技</span>
-        <span class="article-platform">转载自：知乎</span>
+        <span class="article-source">原文出处：{{article.source}}</span>
+        <span class="article-platform">转载自：{{article.share}}</span>
 			</section>
 			<section class="article-data">
 				<div id="read-count" style="width: 100%; height: 130%;"></div>
@@ -21,7 +21,7 @@
 
 		{# 返回文章 #}
 		<div class="btn-container">
-			<a href="javascript:;" class="weui_btn weui_btn_primary">返回文章</a>
+			<a href="{{ path }}/article/{{article.id}}" class="weui_btn weui_btn_primary">返回文章</a>
 		</div>
 	</div>
 {% endblock %}
@@ -72,7 +72,7 @@
             		color: '#2B8C17'
             	}
             },
-            data: [2367]
+            data: [{{article.read_num}}]
         }
       ]
     };
@@ -111,7 +111,7 @@
                     color: '#2B8C17'
                   }
                 },
-                data: [45]
+                data: [{{article.like_num}}]
             }
           ]
         };

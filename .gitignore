@@ -1,3 +1,4 @@
 composer.lock
 web/node_modules
 vendor
+database.php
