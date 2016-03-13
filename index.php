@@ -84,10 +84,15 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    //print_r($req);
+    //正则匹配分离文章标题和内容
+    $rule='/<h1 class="article-title(.*?)>(.*?)<\/h1>/is';
+     preg_match($rule, $req['content'], $title);
+     $content = str_replace($title[0], '', $req['content']);
+    // print_r($title);
+     //录入数据库
     $article = Article::firstOrCreate([
-        //'title' => $req['title'], 
-        'content' => $req['content'],
+        'title' => $title[2],
+        'content' =>  $content,
         'author' => $req['author'],
         //保留字段'pic' => $req['pic'],
         'read_num' => $req['read_num'],
