@@ -1,0 +1,26 @@
+{% extends "_html.twig" %}
+
+{% block title %}文章标题{% endblock %}
+
+{% block body %}
+	<div class="article-page">
+		<article class="weui_article">
+			<h1>{{ article['title']|raw }}</h1>
+			<section class="article-info">
+				<span class="article-date">2016-02-08</span>
+				<span class="article-writor">{{ article['author'] }}</span>
+				<span class="article-source">{{ article['share'] }}</span>
+			</section>
+			<section class="article-content">
+				{{ article['content'] |raw}}</p>
+			</section>
+			<div class="article-count">
+				<span class="article-read">阅读 {{ article['read_num'] }}</span>
+				<span class="article-like">点赞 {{ article['like_num'] }}</span>
+				<a class="article-detail" href="statistics/{{ article['id'] }}">详细数据</a>
+			</div>
+		</article>
+	</div>
+{% endblock %}
+
+{% block defaultScript %}{% endblock %}
