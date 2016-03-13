@@ -84,14 +84,15 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    $rule='/<h1 class="article-title focus-elem">(.*?)<\/h1>/is';//<h1 class="article-title focus-elem">标题gtgfsda</h1>
-    preg_match_all($rule, $req['content'] , $title);
-    //print_r($title);//[@str_replace("要替换的旧内容", "要取代原内容的新字符", $被替换内容的变量名)]
-    $str_replace = '<h1 class="article-title focus-elem">'.$title[1][0].'<\/h1>';
-    $content = str_replace($str_replace, '', $article['content']);
+    //正则匹配分离文章标题和内容
+    $rule='/<h1 class="article-title(.*?)>(.*?)<\/h1>/is';
+     preg_match($rule, $req['content'], $title);
+     $content = str_replace($title[0], '', $req['content']);
+    // print_r($title);
+     //录入数据库
     $article = Article::firstOrCreate([
-        'title' => $title[1][0], 
-        'content' => $content,
+        'title' => $title[2],
+        'content' =>  $content,
         'author' => $req['author'],
         //保留字段'pic' => $req['pic'],
         'read_num' => $req['read_num'],
