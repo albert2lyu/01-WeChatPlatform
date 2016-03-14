@@ -16,11 +16,42 @@
 			</section>
 			<div class="article-count">
 				<span class="article-read">阅读 {{ article['read_num'] }}</span>
-				<span class="article-like">点赞 {{ article['like_num'] }}</span>
-				<a class="article-detail" href="statistics/{{ article['id'] }}">详细数据</a>
+				<span class="article-like" id="likeBtn">点赞 <span id="like-num">{{ article['like_num'] }}</span></span>
+				<a class="article-detail" href="statistics/{{ article['id'] }}" >详细数据</a>
 			</div>
 		</article>
 	</div>
 {% endblock %}
 
-{% block defaultScript %}{% endblock %}
+{% block Script %}
+<script type="text/javascript">
+	$('#likeBtn').on('click', function () {
+      var like_num = $('#like-num').text();
+      var liked_num = parseInt(like_num) + 1;
+	  //console.log(like_num);
+	  $.ajax({
+	    type: 'POST',
+	    url: '{{ path }}/like',
+	    data: {
+	       id: {{ article['id'] }},
+	     },
+	    dataType: 'json',
+	    timeout: 5000,
+	    context: $('body'),
+	    success: function(data){
+	      if(data.status=='success'){
+	      	$('#like-num').text(liked_num);
+	      }
+	      if(data.status=='failed'){
+	      	alert(data.msg);
+	      }
+	    },
+	    error: function(xhr, type){
+	      console.log(xhr)
+	      alert('Ajax error!')
+	    }
+	  })    
+	})
+</script>
+{% endblock %}
+

@@ -144,33 +144,32 @@ $app->get('/article/statistics/:id', function($id) use($app)
  * @param $id Int 文章id
  * @return Json $response
  */
-$app->post('/like', function() use($app)
+$app->post('/like', function() use($app, $json)
 {
     $req = $app->request()->post();
     $id=$req['id'];
     //判断用户是否点赞过
-    $like_pd = Like::where('article_id', '=',$id )->where('ip','=',$_SERVER["REMOTE_ADDR"])->get();
-    if($like_pd)
-    {
-            $json_data=array(
-                'status' =>' failed ',
-                'msg'    =>'you are liked'
-                );
-    }
-    else{
-    //点赞数增加
-    $article=Article::find($id);
-    $article->like_num++;
-    $article->save();
-    //录入点赞人的ip地址
-    $like=Article::firstOrCreate([
-        'article_id'=>$req['id'],
-        'ip'=>$_SERVER["REMOTE_ADDR"]
-        ]);
-    $json_data=array(
-        'status' => 'success',
-        'msg'    =>'insert like'
-        );
+    $like_pd = Like::where('article_id', '=',$id )->where('ip','=',$_SERVER["REMOTE_ADDR"])->get()->toArray();
+    //print_r($like_pd);
+    if(!empty($like_pd)){
+        $json_data=array(
+            'status' =>'failed',
+            'msg'    =>'请不要重复用点赞'
+            );
+    }else{
+        //点赞数增加
+        $article=Article::find($id);
+        $article->like_num++;
+        $article->save();
+        //录入点赞人的ip地址
+        $like=Like::firstOrCreate([
+            'article_id'=>$req['id'],
+            'ip'=>$_SERVER["REMOTE_ADDR"]
+            ]);
+        $json_data=array(
+            'status' => 'success',
+            'msg'    =>'点赞成功'
+            );
     }
     $json->echoRespnse(200, $json_data);
 });
