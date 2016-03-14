@@ -40,19 +40,24 @@ $app->get('/', function() use($app)
  * @param Int $page
  * @return Json $response
  */
-$app->get('/search/:content/:page', function($content, $page) use($app, $json)
+$app->get('/search/:content/:lastid', function($content, $lastid) use($app, $json)
 {
-    $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    if($lastid == '0'){
+        $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    }else{
+        $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->where('id', '<', $lastid)->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    }
+    //print_r($articles);
     if(!empty($articles)){
         $json_data = array(
             'status'=> 'success',
             'result' => $articles
-            );
+        );
     }else{
         $json_data = array(
             'status'=> 'failed',
             'result' => 'empty data'
-            );
+        );
     }
     $json->echoRespnse(200, $json_data);
 });
@@ -154,7 +159,7 @@ $app->post('/like', function() use($app, $json)
     if(!empty($like_pd)){
         $json_data=array(
             'status' =>'failed',
-            'msg'    =>'请不要重复用点赞'
+            'msg'    =>'请不要重复点赞'
             );
     }else{
         //点赞数增加

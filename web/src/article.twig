@@ -12,7 +12,7 @@
 				<span class="article-source">{{ article['share'] }}</span>
 			</section>
 			<section class="article-content">
-				{{ article['content'] |raw}}</p>
+				{{ article['content']|raw}}</p>
 			</section>
 			<div class="article-count">
 				<span class="article-read">阅读 {{ article['read_num'] }}</span>
@@ -47,8 +47,8 @@
 	      }
 	    },
 	    error: function(xhr, type){
-	      console.log(xhr)
-	      alert('Ajax error!')
+	      console.log(xhr);
+	      alert('网络异常');
 	    }
 	  })    
 	})

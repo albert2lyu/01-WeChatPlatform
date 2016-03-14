@@ -23,35 +23,91 @@
   {# 图文列表 #}
   <div class="search-result weui_panel weui_panel_access">
     <div class="weui_panel_hd">搜索结果</div>
-    <div class="weui_panel_bd">
+    <div class="weui_panel_bd" id="result">
 
-      {# 区块一 #}
+      <!-- {# 区块一 #}
       <div class="weui_media_box weui_media_text">
         <h4 class="weui_media_title">标题一</h4>
         <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
       </div>
-
+      
       {# 区块二 #}
       <div class="weui_media_box weui_media_text">
         <h4 class="weui_media_title">标题二</h4>
         <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
       </div>
-
+      
       {# 区块三 #}
       <div class="weui_media_box weui_media_text">
         <h4 class="weui_media_title">标题二</h4>
         <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-      </div>
+      </div> -->
     </div>
-    <a href="javascript:void(0);" class="weui_panel_ft">查看更多</a>
+    <a href="javascript:void(0);" class="weui_panel_ft" id="more">查看更多</a>
   </div>
 
   <div class="search-footer-space"></div>
 
-  {# 新建文章 #}
+  {# 新建文章 #} 
   <br>
   <div class="btn-container">
-  	<a href="create" class="weui_btn weui_btn_primary">新建文章</a>
+    <a href="create" class="weui_btn weui_btn_primary">新建文章</a>
   </div>
 </div>
+{% endblock %}
+
+{% block Script %}
+<script type="text/javascript">
+  //初始化lastid,标记获得的最后一个数据id
+  localStorage.setItem('lastid', 0);
+  localStorage.setItem('lastid_compare', 0);
+
+  function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+  }
+
+  $('#more').on('click', function () {
+
+    $.ajax({
+      type: 'GET',
+      url: '{{ path }}/search/1/'+localStorage.getItem('lastid'),
+      dataType: 'json',
+      timeout: 5000,
+      context: $('body'),
+      success: function(data){
+        if(data.status == 'failed'){
+          if(localStorage.getItem('lastid')=='0'){
+            alert('没有搜索到相关文章了');
+          }else{
+            alert('没有更多文章了');
+          }
+          //alert(localStorage.getItem('lastid'));
+          return;
+        }
+        console.log(data.result);
+        if(data.status == 'success'){
+          var result = '';
+          var title = '';
+          var content = '';
+          for(var i in data.result){
+            title = delHtmlTag(data.result[i].title);
+            content = delHtmlTag(data.result[i].content).substr(0, 50);
+            result += '<div class="weui_media_box weui_media_text"><h4 class="weui_media_title">'+ title +'</h4><p class="weui_media_desc">'+ content +'</p></div>';
+            localStorage.setItem('lastid', data.result[i].id);
+          }
+          if(localStorage.getItem('lastid') == localStorage.getItem('lastid_compare')){
+            alert('没有更多文章了');
+          }else{
+            $('#result').append(result);
+            localStorage.setItem('lastid_compare', localStorage.getItem('lastid'));
+          }
+        }
+      },
+      error: function(xhr, type){
+        console.log(xhr)
+        alert('网络异常,获取数据失败');
+      }
+    })    
+  })
+</script>
 {% endblock %}
