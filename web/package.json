@@ -16,7 +16,7 @@
     "gulp",
     "sass"
   ],
-  "author": "Loyalsolder <loyalsoldier@qq.com>",
+  "author": "Banana Studio",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.11.1",
