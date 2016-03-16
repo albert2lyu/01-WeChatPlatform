@@ -6,11 +6,12 @@
     <title>{% block title %}来自香蕉实验室{% endblock %}</title>
 
     {% block defaultCSS %}
-    <link rel="stylesheet" href="./web/src/css/weui.min.css">
+    <link rel="stylesheet" href="{{ path }}/web/src/css/weui.min.css">
+
     {% endblock %}
 
     {% block Stylesheet %}{% endblock %}
-    <link rel="stylesheet" href="./web/src/css/index.css">
+    <link rel="stylesheet" href="{{ path }}/web/src/css/index.css">
 
     {% block headScript %}{% endblock %}
   </head>
@@ -18,10 +19,11 @@
     {% block body %}{% endblock %}
 
     {% block defaultScript %}
-    <script type="text/javascript" src="./web/src/js/zepto.js"></script>
-    <script type="text/javascript" src="./web/src/js/jquery-weui.js"></script>
+    <script type="text/javascript" src="{{ path }}/web/src/js/zepto.js"></script>
+    <script type="text/javascript" src="{{ path }}/web/src/js/jquery-weui.js"></script>
     {% endblock %}
     {% block Script %}
     {% endblock %}
+    {{ a }}
   </body>
 </html>

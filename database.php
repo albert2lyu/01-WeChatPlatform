@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 $database = [
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'slim_article',
+    'database'  => 'test',
     'username'  => 'root',
     'password'  => 'root',
     'charset'   => 'utf8',

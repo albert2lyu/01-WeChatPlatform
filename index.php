@@ -13,7 +13,9 @@ use Model\Article;
 use Model\Like;
 
 //定义URI路径
-define('URI_PATH', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$rooturl=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'], 0,-9);
+// $rooturl = str_replace('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'], '/index.php', '');
+define('URI_PATH', $rooturl);
 
 //初始化数据库
 require 'database.php';
@@ -28,7 +30,8 @@ $json = new Json();
 
 $app->get('/', function() use($app)
 {
-    $app->render('index.twig');
+    // echo URI_PATH;
+     $app->render('index.twig',array('path'=>URI_PATH));
 });
 
 /**
@@ -37,19 +40,24 @@ $app->get('/', function() use($app)
  * @param Int $page
  * @return Json $response
  */
-$app->get('/search/:content/:page', function($content, $page) use($app, $json)
+$app->get('/search/:content/:lastid', function($content, $lastid) use($app, $json)
 {
-    $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    if($lastid == '0'){
+        $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    }else{
+        $articles = Article::where('title', 'like', '%'.$content.'%')->orwhere('content', 'like', '%'.$content.'%')->where('id', '<', $lastid)->orderBy('title')->orderBy('created_at', 'desc')->get()->toArray();
+    }
+    //print_r($articles);
     if(!empty($articles)){
         $json_data = array(
             'status'=> 'success',
             'result' => $articles
-            );
+        );
     }else{
         $json_data = array(
             'status'=> 'failed',
             'result' => 'empty data'
-            );
+        );
     }
     $json->echoRespnse(200, $json_data);
 });
@@ -62,7 +70,7 @@ $app->get('/search/:content/:page', function($content, $page) use($app, $json)
 $app->get('/create', function() use($app)
 {
     //todo
-    $app->render('edit.twig');
+    $app->render('edit.twig',array('path'=>URI_PATH));
 });
 
 /**
@@ -81,10 +89,15 @@ $app->post('/create', function() use($app, $json)
 {
     //获取传递过来的数据并格式化为数组
     $req = $app->request()->post();
-    //todo 此处还需增加分离标题和正文（提取标题并替换成空白字符串）
+    //正则匹配分离文章标题和内容
+    $rule='/<h1 class="article-title(.*?)>(.*?)<\/h1>/is';
+     preg_match($rule, $req['content'], $title);
+     $content = str_replace($title[0], '', $req['content']);
+    // print_r($title);
+     //录入数据库
     $article = Article::firstOrCreate([
-        //'title' => $req['title'], 
-        'content' => $req['content'],
+        'title' => $title[2],
+        'content' =>  $content,
         'author' => $req['author'],
         //保留字段'pic' => $req['pic'],
         'read_num' => $req['read_num'],
@@ -98,8 +111,8 @@ $app->post('/create', function() use($app, $json)
             );
     }else{
         $json_data = array(
-            'status'=>'insert failed',
-            'msg'=>''
+            'status'=>'failed',
+            'msg'=>'insert failed'
             );
     }
     $json->echoRespnse(200, $req);
@@ -116,8 +129,7 @@ $app->get('/article/:id', function($id) use($app)
     $article->read_num++;
     $article->save();
     $article=Article::find($id)->toArray();
-    // print_r($article);
-    $app->render('article.twig',array('article'=>$article));
+    $app->render('article.twig',array('path'=>URI_PATH,'article'=>$article));
 });
 
 /**
@@ -127,8 +139,8 @@ $app->get('/article/:id', function($id) use($app)
  */
 $app->get('/article/statistics/:id', function($id) use($app)
 {   
-    $article=Article::find($id);
-    $app->render('data.twig',array('article'=>$article));
+    $article=Article::find($id)->toArray();
+    $app->render('data.twig',array('path'=>URI_PATH,'article'=>$article));
 });
 
 
@@ -137,37 +149,35 @@ $app->get('/article/statistics/:id', function($id) use($app)
  * @param $id Int 文章id
  * @return Json $response
  */
-$app->post('/like', function() use($app)
+$app->post('/like', function() use($app, $json)
 {
-    $req = $app->request();
-    $id=$req->post('id');
-    $article=Article::find($id);
-    $article->like_num++;
-    $article->save();
-});
-
-$app->get('/test', function() use($app, $json )
-{
-    $article = Article::firstOrCreate(['content' => '123',
-        'author' => '123',
-        //保留字段'pic' => $req['pic'],
-        'read_num' => '123',
-        'like_num' => '123',
-        'source' => '123',
-        'share' => '123'
-        ]);
-    //$article = Article::find(6);
-    if(!empty($article)){
-        $json_data = array(
-            'status'=>'success'
+    $req = $app->request()->post();
+    $id=$req['id'];
+    //判断用户是否点赞过
+    $like_pd = Like::where('article_id', '=',$id )->where('ip','=',$_SERVER["REMOTE_ADDR"])->get()->toArray();
+    //print_r($like_pd);
+    if(!empty($like_pd)){
+        $json_data=array(
+            'status' =>'failed',
+            'msg'    =>'请不要重复点赞'
             );
     }else{
-        $json_data = array(
-            'status'=>'insert failed',
-            'msg'=>''
+        //点赞数增加
+        $article=Article::find($id);
+        $article->like_num++;
+        $article->save();
+        //录入点赞人的ip地址
+        $like=Like::firstOrCreate([
+            'article_id'=>$req['id'],
+            'ip'=>$_SERVER["REMOTE_ADDR"]
+            ]);
+        $json_data=array(
+            'status' => 'success',
+            'msg'    =>'点赞成功'
             );
     }
     $json->echoRespnse(200, $json_data);
 });
+
 
 $app->run();
